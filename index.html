@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NutriScan - AI Nutrition Coach & Deficiency Detector</title>
+    <meta name="description" content="Discover nutrient deficiencies with AI. Track meals, get personalized insights, and optimize your health with NutriScan.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            color: white;
+        }
+        h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        .tagline {
+            font-size: 24px;
+            margin-bottom: 40px;
+            opacity: 0.95;
+        }
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        .btn {
+            padding: 15px 40px;
+            font-size: 18px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.2s;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+        .btn-primary {
+            background: white;
+            color: #2ecc71;
+            font-weight: 600;
+        }
+        .btn-secondary {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 2px solid white;
+        }
+        .features {
+            background: white;
+            padding: 60px 20px;
+            border-radius: 20px 20px 0 0;
+            margin-top: -20px;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+        .feature {
+            text-align: center;
+            padding: 20px;
+        }
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+        .feature h3 {
+            color: #2ecc71;
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+        .stats {
+            background: #f8f9fa;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+        .stat-number {
+            font-size: 48px;
+            font-weight: 700;
+            color: #2ecc71;
+            margin-bottom: 10px;
+        }
+        .stat-label {
+            font-size: 18px;
+            color: #666;
+        }
+        .pricing {
+            background: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .pricing-card {
+            border: 2px solid #e0e0e0;
+            border-radius: 15px;
+            padding: 40px;
+            transition: transform 0.2s;
+        }
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .pricing-card.featured {
+            border-color: #2ecc71;
+            background: linear-gradient(135deg, #f0f9f4 0%, #e8f5e9 100%);
+            transform: scale(1.05);
+        }
+        .price {
+            font-size: 48px;
+            font-weight: 700;
+            color: #2ecc71;
+            margin: 20px 0;
+        }
+        .price-period {
+            font-size: 18px;
+            color: #666;
+        }
+        .pricing-features {
+            list-style: none;
+            margin: 30px 0;
+            text-align: left;
+        }
+        .pricing-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .pricing-features li:before {
+            content: "✓ ";
+            color: #2ecc71;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        footer {
+            background: #333;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .footer-links {
+            margin: 20px 0;
+        }
+        .footer-links a {
+            color: #2ecc71;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 36px;
+            }
+            .tagline {
+                font-size: 18px;
+            }
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🥗 NutriScan</h1>
+            <p class="tagline">AI-Powered Nutrition Coach & Deficiency Detector</p>
+            <p style="font-size: 20px; margin-bottom: 30px;">
+                Discover nutrient deficiencies by analyzing your meals with AI.<br>
+                92% of people have 3-7 deficiencies causing fatigue and health issues.
+            </p>
+            <div class="cta-buttons">
+                <a href="https://play.google.com/store/apps/details?id=com.nutriscan.app" class="btn btn-primary">
+                    📱 Download on Google Play
+                </a>
+                <a href="#features" class="btn btn-secondary">Learn More</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="features" id="features">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 36px; margin-bottom: 20px;">🌟 Why NutriScan?</h2>
+            <p style="text-align: center; font-size: 18px; color: #666; margin-bottom: 40px;">
+                The world's first app that detects nutrient deficiencies using AI meal and body analysis
+            </p>
+            
+            <div class="features-grid">
+                <div class="feature">
+                    <div class="feature-icon">📸</div>
+                    <h3>AI Meal Scanning</h3>
+                    <p>Take a photo of your meal and get instant nutrition analysis with GPT-4 Vision AI</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">🔬</div>
+                    <h3>Deficiency Detection</h3>
+                    <p>Discover which of 13+ essential nutrients you're missing based on your diet and symptoms</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">📊</div>
+                    <h3>Wellness Score</h3>
+                    <p>Track your daily wellness score (0-100) and body age based on nutrition quality</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">🏆</div>
+                    <h3>Global Leaderboard</h3>
+                    <p>Compete with millions of users worldwide and climb to the top</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Achievements</h3>
+                    <p>Unlock 12+ achievements and badges for healthy habits</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">👥</div>
+                    <h3>Viral Referrals</h3>
+                    <p>Refer friends and earn FREE premium (25 referrals = lifetime premium!)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="container">
+            <h2 style="font-size: 36px; margin-bottom: 20px;">📈 By The Numbers</h2>
+            <div class="stats-grid">
+                <div>
+                    <div class="stat-number">100,000+</div>
+                    <div class="stat-label">Foods in Database</div>
+                </div>
+                <div>
+                    <div class="stat-number">13+</div>
+                    <div class="stat-label">Nutrients Tracked</div>
+                </div>
+                <div>
+                    <div class="stat-number">92%</div>
+                    <div class="stat-label">People with Deficiencies</div>
+                </div>
+                <div>
+                    <div class="stat-number">85-95%</div>
+                    <div class="stat-label">AI Accuracy</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing">
+        <div class="container">
+            <h2 style="font-size: 36px; margin-bottom: 20px;">💎 Pricing</h2>
+            <p style="font-size: 18px; color: #666; margin-bottom: 40px;">
+                Start free, upgrade when ready
+            </p>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3 style="font-size: 28px; color: #333;">Free</h3>
+                    <div class="price">$0</div>
+                    <div class="price-period">Forever</div>
+                    <ul class="pricing-features">
+                        <li>7 meal scans per week</li>
+                        <li>Basic nutrition tracking</li>
+                        <li>100k+ food database</li>
+                        <li>Wellness score</li>
+                        <li>Leaderboard access</li>
+                        <li>Achievements</li>
+                        <li>Referral rewards</li>
+                    </ul>
+                    <a href="https://play.google.com/store/apps/details?id=com.nutriscan.app" class="btn btn-secondary" style="width: 100%;">Get Started</a>
+                </div>
+
+                <div class="pricing-card featured">
+                    <div style="background: #2ecc71; color: white; padding: 5px; border-radius: 5px; margin: -40px -40px 20px -40px; font-weight: 600;">
+                        ⭐ MOST POPULAR
+                    </div>
+                    <h3 style="font-size: 28px; color: #2ecc71;">Premium</h3>
+                    <div class="price">$7.99</div>
+                    <div class="price-period">per month</div>
+                    <ul class="pricing-features">
+                        <li>UNLIMITED meal scans</li>
+                        <li>Visual body analysis (skin, nails, eyes, tongue, hair)</li>
+                        <li>Advanced AI insights</li>
+                        <li>Detailed deficiency reports</li>
+                        <li>Export nutrition data</li>
+                        <li>Priority support</li>
+                        <li>Ad-free experience</li>
+                        <li>7-DAY FREE TRIAL</li>
+                    </ul>
+                    <a href="https://play.google.com/store/apps/details?id=com.nutriscan.app" class="btn btn-primary" style="width: 100%;">Start Free Trial</a>
+                </div>
+
+                <div class="pricing-card">
+                    <h3 style="font-size: 28px; color: #333;">Premium Yearly</h3>
+                    <div class="price">$59.99</div>
+                    <div class="price-period">per year (save 37%)</div>
+                    <ul class="pricing-features">
+                        <li>Everything in Premium Monthly</li>
+                        <li>Save $36/year</li>
+                        <li>Cancel anytime</li>
+                    </ul>
+                    <a href="https://play.google.com/store/apps/details?id=com.nutriscan.app" class="btn btn-secondary" style="width: 100%; margin-top: 200px;">Start Free Trial</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <h3 style="margin-bottom: 20px;">🥗 NutriScan</h3>
+            <p>AI-Powered Nutrition Coach & Deficiency Detector</p>
+            
+            <div class="footer-links">
+                <a href="privacy-policy.html">Privacy Policy</a>
+                <a href="terms-of-service.html">Terms of Service</a>
+                <a href="support.html">Support</a>
+            </div>
+            
+            <p style="margin-top: 30px; opacity: 0.7;">
+                📧 <a href="mailto:support@nutriscan.app" style="color: #2ecc71;">support@nutriscan.app</a>
+            </p>
+            
+            <p style="margin-top: 30px; font-size: 14px; opacity: 0.6;">
+                © 2026 NutriScan. All rights reserved.
+            </p>
+            
+            <p style="margin-top: 10px; font-size: 12px; opacity: 0.5;">
+                ⚕️ Medical Disclaimer: NutriScan provides nutritional information and is not a substitute for professional medical advice, diagnosis, or treatment. Always consult a qualified healthcare provider before making significant dietary changes.
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
